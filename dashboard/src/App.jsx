@@ -35,6 +35,7 @@ const App = () => {
   const [data, setData] = useState([]);
   const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [theme, setTheme] = useState('light');
 
@@ -44,11 +45,17 @@ const App = () => {
   const itemsPerPage = 15;
 
   useEffect(() => {
-    loadResults().then(res => {
-      setData(res);
-      setSummary(getSummary(res));
-      setLoading(false);
-    });
+    loadResults()
+      .then(res => {
+        setData(res);
+        setSummary(getSummary(res));
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Failed to load results:", err);
+        setError("Failed to load simulation results. Please check if the data files exist.");
+        setLoading(false);
+      });
 
     // Load theme preference
     const savedTheme = localStorage.getItem('votersim-theme') || 'light';
@@ -118,6 +125,17 @@ const App = () => {
     <div className="loading-screen">
       <div className="loader"></div>
       <p>Initializing TN'26 Election Engine...</p>
+    </div>
+  );
+
+  if (error) return (
+    <div className="loading-screen error">
+      <div className="card" style={{ padding: '2rem', textAlign: 'center', maxWidth: '400px' }}>
+        <p style={{ color: '#ef4444', fontWeight: 600, marginBottom: '1rem' }}>{error}</p>
+        <button onClick={() => window.location.reload()} className="page-btn active" style={{ margin: '0 auto' }}>
+          Retry
+        </button>
+      </div>
     </div>
   );
 

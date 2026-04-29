@@ -2,7 +2,7 @@ import Papa from 'papaparse';
 
 export const loadResults = async () => {
   return new Promise((resolve, reject) => {
-    Papa.parse('/data/simulation_results.csv', {
+    Papa.parse('data/simulation_results.csv', {
       download: true,
       header: true,
       dynamicTyping: true,
@@ -27,7 +27,7 @@ export const loadResults = async () => {
 
 export const loadMetadata = async () => {
   return new Promise((resolve, reject) => {
-    Papa.parse('/data/assembly_metadata_enriched.csv', {
+    Papa.parse('data/assembly_metadata_enriched.csv', {
       download: true,
       header: true,
       dynamicTyping: true,
