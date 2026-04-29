@@ -1,0 +1,60 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+env/
+.env
+.venv/
+.python-version
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Simulation Outputs (Consolidated)
+# We track these only in the dashboard public directory for GitHub Pages.
+!dashboard/public/data/*.csv
+
+# Ignore simulation results in other locations
+simulation_results.csv
+voter_agent_logs.csv
+agent_debate_logs.csv
+data/simulation_results.csv
+data/voter_agent_logs.csv
+data/agent_debate_logs.csv
+
+# General CSV ignore (to catch any other temporary or massive data files)
+*.csv
+
+# Allow Source Data (Inputs) in data/ directory
+!data/assembly_metadata.csv
+!data/assembly_metadata_enriched.csv
+!data/assembly_candidate_sentiment.csv
+!data/candidate_sentiment.csv
+!data/districts_metadata.csv
+!data/historical_trend.csv
+
+# Node.js (Dashboard)
+node_modules/
+dashboard/node_modules/
+dashboard/dist/
+dashboard/dist-ssr/
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+simulation_checkpoint.json
+scratch/
